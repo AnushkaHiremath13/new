@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="local.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Student Registration</h2>
+      <form onsubmit="return validateForm()">
+        <div class="form-group">
+          <label>Full Name:</label>
+          <input type="text" id="fullName" required />
+        </div>
+        <div class="form-group">
+          <label>Email:</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label>Student SRN:</label>
+          <input type="text" id="student_srn" required />
+        </div>
+        <div class="form-group">
+          <label>Date of Birth:</label>
+          <input type="date" id="dob" required />
+        </div>
+        <div class="form-group">
+          <label>Gender:</label>
+          <select id="gender" required>
+            <option value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Course:</label>
+          <input type="text" id="course" required />
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <script>
+      function validateForm() {
+        var srn = document.getElementById("student_srn").value;
+        var re = /^\d{2}\w{2}\d{2}\w{3}\d{3}$/;
+        if (!re.test(srn)) {
+          alert("Invalid SRN! Please enter a valid SRN.");
+          return false;
+        }
+        var details = `Confirm your details:\n\nName: ${
+          document.getElementById("fullName").value
+        }\nEmail: ${
+          document.getElementById("email").value
+        }\nSRN: ${srn}\nDOB: ${document.getElementById("dob").value}\nGender: ${
+          document.getElementById("gender").value
+        }\nCourse: ${document.getElementById("course").value}`;
+        return confirm(details);
+      }
+    </script>
+  </body>
+</html>
